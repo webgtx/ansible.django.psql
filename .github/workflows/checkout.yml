@@ -1,0 +1,6 @@
+name: Simple checkout workflow 
+
+on: push
+
+jobs:
+  checkout:

@@ -1,0 +1,18 @@
+---
+- name: Ensure in nginx
+  dnf: 
+    name: nginx
+    state: present
+  become: true
+
+- name: Template stage conf
+  template: 
+    src: ./configs/nginx/{{ instance }}.conf
+    dest: /etc/nginx/conf.d
+  become: true
+
+- name: Restart nginx 
+  service:
+    name: nginx
+    state: restarted
+  become: true

@@ -1,0 +1,1 @@
+ansible_ssh_private_key_file: "{{inventory_dir}}/group_vars/stage/keys/id_rsa

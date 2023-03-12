@@ -1,0 +1,9 @@
+---
+- hosts: [dev, stage, prod]
+
+  tasks:
+    - name: Sync authorized_keys file
+      template:
+        src: ./configs/authorized_keys
+        dest: ~/.ssh/authorized_keys
+        mode: 0600

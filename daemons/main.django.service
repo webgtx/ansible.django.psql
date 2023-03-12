@@ -1,0 +1,9 @@
+[Unit]
+Description=Django runtime
+[Service]
+Type=simple
+ExecStart=. .venv/bin/activate && gunicorn wsgi:application --chdir mthmr -b 0.0.0.0:8000 -w 4
+WorkingDirectory=/home/opc/actions-runner/_work/webgtx/webgtx
+Restart=always
+[Install]
+WantedBy=default.target

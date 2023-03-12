@@ -1,0 +1,13 @@
+---
+- hosts: [stage, dev, prod]
+  become: true
+
+  roles:
+    - role: gantsign.oh-my-zsh
+      users:
+        - username: opc
+          oh_my_zsh:
+            theme: clean
+            plugins:
+              - git
+              - nvm

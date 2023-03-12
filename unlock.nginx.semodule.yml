@@ -1,0 +1,11 @@
+---
+# required action for Oracle linux
+- name: Unlock semodule for nginx
+  hosts: [dev, stage, prod]
+  become: true
+
+  tasks:
+    - name: Generate module
+      shell: cat /var/log/audit/audit.log | grep nginx | grep denied | audit2allow -M mynginx
+    - name: Install module
+      shell: semodule -i mynginx.pp 

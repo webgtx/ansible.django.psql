@@ -1,0 +1,15 @@
+---
+- hosts: [dev, stage, prod]
+  become: true
+
+  tasks:
+    - name: Disable and stop firewalld
+      service:
+        name: firewalld
+        state: stopped
+        enabled: false
+    - name: Install ufw
+      dnf:
+        name: ufw
+        state: present
+

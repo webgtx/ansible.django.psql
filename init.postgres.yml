@@ -1,0 +1,33 @@
+---
+- name: Create new psql database cluster
+  hosts: databases
+  become: true
+
+  tasks:
+    - name: Ensure in paths for postgres_data
+      stat:
+        path: /var/lib/pgsql/data
+      register: postgres_data
+
+    - name: Init database
+      shell: postgresql-setup --initdb
+      when: not postgres_data.stat.exists
+
+    - name: Template pg_hba.conf
+      template:
+        src: ./configs/pg_hba.conf
+        dest: /var/lib/pgsql/data/pg_hba.conf
+      become_user: postgres
+
+    - name: Template postgresql.conf
+      template:
+        src: ./configs/postgresql.conf
+        dest: /var/lib/pgsql/data/postgresql.conf
+      become_user: postgres
+
+    - name: Setup psql daemon using systemd
+      service:
+        name: postgresql
+        state: started
+        enabled: true
+

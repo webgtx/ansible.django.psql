@@ -1,0 +1,14 @@
+[dev]
+main.dev
+
+[stage]
+main.stage
+database.stage
+
+[prod]
+main.prod
+database.prod
+
+[databases]
+database.stage
+database.prod

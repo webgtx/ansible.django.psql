@@ -1,0 +1,6 @@
+---
+- hosts: [dev, stage, prod]
+  become: true
+
+  roles:
+    - setup_docker

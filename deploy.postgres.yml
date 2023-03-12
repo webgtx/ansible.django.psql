@@ -1,0 +1,12 @@
+---
+- name: Deploy postgres
+  hosts: databases
+  become: true
+
+  tasks:
+    - name: Ensure postgres server package
+      dnf:
+        name: postgresql-server
+        state: present
+
+

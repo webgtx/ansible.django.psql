@@ -1,0 +1,23 @@
+---
+# - name: Check if a repository included
+#   stat:
+#     path: /etc/yum.repos.d/docker-ce.repo
+#   register: docker_repo
+# 
+# - name: Install docker repository
+#   get_url:
+#     url: https://download.docker.com/linux/centos/docker-ce.repo
+#     dest: /etc/yum.repos.d/docker-ce.repo
+#   when: not docker_repo.stat.exists
+
+- name: Enable docker repository
+  yum_repository:
+    name: docker-ce
+    description: docker-ce repositories
+    baseurl: https://download.docker.com/linux/centos/8/source/stable
+
+- name: Ensure in docker requirements 
+  dnf:
+    name:
+      - docker
+    state: latest

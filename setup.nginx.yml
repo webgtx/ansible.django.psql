@@ -1,0 +1,23 @@
+---
+- name: Setup web server for dev instance
+  hosts: dev
+  roles:
+    - setup_nginx
+  vars:
+    instance: dev
+
+- name: Setup web server for stage instance
+  hosts: main.stage
+  roles:
+    - setup_nginx
+  vars:
+    instance: stage
+
+- name: Setup web server for prod instance
+  hosts: main.prod
+  roles:
+    - setup_nginx
+  vars:
+    instance: prod
+
+
